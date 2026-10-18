@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webxdc ストア</title>
+    <style>
+        body { font-family: sans-serif; max-width: 700px; margin: 20px auto; padding: 0 15px; line-height: 1.5; color: #333; }
+        h1 { font-size: 1.6rem; margin-bottom: 10px; }
+        .header-desc { margin-bottom: 20px; font-size: 0.95rem; }
+        
+        /* カテゴリーフィルター */
+        .category-filter { margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+        .filter-btn { background: #e0e0e0; border: none; padding: 6px 12px; border-radius: 16px; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: #555; }
+        .filter-btn.active, .filter-btn:hover { background: #0088cc; color: #fff; }
+
+        /* セクション・カードスタイル */
+        .category-section { margin-bottom: 30px; }
+        .category-title { font-size: 1.2rem; border-bottom: 2px solid #0088cc; padding-bottom: 4px; margin-bottom: 12px; color: #0088cc; }
+        
+        .app-card { border: 1px solid #ddd; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; background: #f9f9f9; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .app-card-header { display: flex; align-items: center; margin-bottom: 6px; }
+        .app-card img { width: 32px; height: 32px; margin-right: 10px; border-radius: 4px; }
+        .app-card h3 { font-size: 1.05rem; margin: 0; }
+        .app-card p { font-size: 0.9rem; margin: 6px 0 10px 0; color: #555; }
+        
+        .btn-group { display: flex; flex-wrap: wrap; gap: 6px; }
+        .btn { display: inline-block; background: #0088cc; color: #fff; padding: 5px 10px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.82rem; }
+        .btn:hover { background: #006699; }
+        .btn-main { background: #28a745; }
+        .btn-main:hover { background: #218838; }
+    </style>
+</head>
+<body>
+    <h1>📦 Webxdc ストア</h1>
+    <p class="header-desc">Delta Chatで利用できるWebxdcアプリのダウンロードサイトへようこそ。<br><a href="Benefits.html" class="btn btn-main" style="margin-top:8px;">デルタチャットでミニアプリのメリット ⇛</a></p>
+
+    <!-- カテゴリー切り替えボタン -->
+    <div class="category-filter">
+        <button class="filter-btn active" onclick="filterCategory('all')">すべて表示</button>
+        <button class="filter-btn" onclick="filterCategory('business')">🏢 業務・総務・管理</button>
+        <button class="filter-btn" onclick="filterCategory('service')">🏨 受付・予約・店舗</button>
+        <button class="filter-btn" onclick="filterCategory('education')">📚 教育・学習</button>
+        <button class="filter-btn" onclick="filterCategory('game')">🎮 ゲーム・エンタメ</button>
+        <button class="filter-btn" onclick="filterCategory('life')">🐾 ライフ・ペット</button>
+    </div>
+
+    <!-- 1. 業務・総務・管理 -->
+    <div class="category-section" data-category="business">
+        <h2 class="category-title">🏢 業務・総務・管理</h2>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/attendance_management/attendance_management.png" alt="アイコン">
+                <h3>出退勤管理（代表管理）多言語対応 (ver 2.1.0)</h3>
+            </div>
+            <p>出退勤管理。日々の記録と月次集計、CSV出力。代表者による管理。</p>
+            <div class="btn-group">
+                <a href="/attendance_management/attendance_management_munual.html" class="btn">マニュアルを表示</a>
+                <a href="/attendance_management/attendance_management-demo.html" class="btn">デモを開く</a>
+                <a href="/attendance_management/attendance_management_v2.1.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Supply_BOX/Supply_BOX.png" alt="アイコン">
+                <h3>備品BOX (ver 1.0.0)</h3>
+            </div>
+            <p>「備品」で対象を選び、貸出時と返却時に記録する備品貸出返却管理。</p>
+            <div class="btn-group">
+                <a href="/Supply_BOX/Supply_BOX.html" class="btn">マニュアルを表示</a>
+                <a href="/Supply_BOX/Supply_BOX-demo.html" class="btn">デモを開く</a>
+                <a href="/Supply_BOX/Supply_BOX_1.0.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Supply_Hub/Supply_Hub.png" alt="アイコン">
+                <h3>備品Hub (ver 1.0.0)</h3>
+            </div>
+            <p>備品の購入依頼をまとめ、進捗等の集計管理。</p>
+            <div class="btn-group">
+                <a href="/Supply_Hub/Supply_Hub.html" class="btn">マニュアルを表示</a>
+                <a href="/Supply_Hub/Supply_Hub-demo.html" class="btn">デモを開く</a>
+                <a href="/Supply_Hub/Supply_Hub_1.0.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/repair-desk/repair-desk.png" alt="アイコン">
+                <h3>設備不具合・修理受付 (ver 1.0.0)</h3>
+            </div>
+            <p>施設や職場の設備の不具合を、グループで記録・共有管理。</p>
+            <div class="btn-group">
+                <a href="/repair-desk/repair-desk-manual.html" class="btn">マニュアルを表示</a>
+                <a href="/repair-desk/repair-desk-demo.html" class="btn">デモを開く</a>
+                <a href="/repair-desk/repair-desk_1.0.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Notice_Confirmation_Sheet/Notice_Confirmation_Sheet.png" alt="アイコン">
+                <h3>社内通知の確認表 (ver 1.0.0)</h3>
+            </div>
+            <p>お知らせを共有し、本人が内容を確認したことを記録し管理。</p>
+            <div class="btn-group">
+                <a href="/Notice_Confirmation_Sheet/Notice_Confirmation_Sheet.html" class="btn">マニュアルを表示</a>
+                <a href="/Notice_Confirmation_Sheet/Notice_Confirmation_Sheet-demo.html" class="btn">デモを開く</a>
+                <a href="/Notice_Confirmation_Sheet/Notice_Confirmation_Sheet_1.0.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. 受付・予約・店舗 -->
+    <div class="category-section" data-category="service">
+        <h2 class="category-title">🏨 受付・予約・店舗</h2>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/reception-select/reception-select.png" alt="アイコン">
+                <h3>来客コールシステム（担当者指名）多言語対応 (ver 1.0.4)</h3>
+            </div>
+            <p>事務所の入口に置いた受付端末（タブレット）で、来訪者が会いたい担当者の名前を押すと、その担当者のスマホにだけ通知が届きます。担当者は受付端末に通話をかけて、来訪者と会話を行います。</p>
+            <div class="btn-group">
+                <a href="/reception-select/reception-operation-manual.html" class="btn">マニュアルを表示</a>
+                <a href="/reception-select/reception-select-demo.html" class="btn">デモを開く</a>
+                <a href="/reception-select/reception-select-1.0.4.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/seatmate_authority/seatmate_authority.png" alt="アイコン">
+                <h3>Seatmate - 席待ち管理 (ver 1.1.1)</h3>
+            </div>
+            <p>入口端末で確定する受付・席割り当て・スタッフ操作要求管理。</p>
+            <div class="btn-group">
+                <a href="/seatmate_authority/seatmate-manual.html" class="btn">マニュアルを表示</a>
+                <a href="/seatmate_authority/seatmate-demo.html" class="btn">デモを開く</a>
+                <a href="/seatmate_authority/seatmate_authority_1.1.1.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Mon_Reservation/Mon_Reservation.png" alt="アイコン">
+                <h3>門 スタッフ共有予約台帳 (ver 1.3.2)</h3>
+            </div>
+            <p>電話・個別チャット・店頭で受けた予約を、スタッフ専用グループで共有管理。</p>
+            <div class="btn-group">
+                <a href="/Mon_Reservation/Mon_Reservation_Staff.html" class="btn">マニュアルを表示</a>
+                <a href="/Mon_Reservation/Mon_Reservation_Staff-demo.html" class="btn">デモを開く</a>
+                <a href="/Mon_Reservation/Mon_Reservation_Staff_1.3.2.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 教育・学習 -->
+    <div class="category-section" data-category="education">
+        <h2 class="category-title">📚 教育・学習</h2>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Aozora-Classroom/Aozora-Classroom.png" alt="アイコン">
+                <h3>青空教室 (ver 1.0.4)</h3>
+            </div>
+            <p>先生が教材を配り、生徒がわかった・わからない・質問で応える。</p>
+            <div class="btn-group">
+                <a href="/Aozora-Classroom/Aozora-Classroom.html" class="btn">マニュアルを表示</a>
+                <a href="/Aozora-Classroom/Aozora-Classroom-demo.html" class="btn">デモを開く</a>
+                <a href="/Aozora-Classroom/Aozora-Classroom-1.0.4.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Rubik_s_Cube_Teacher/Rubik_s_Cube_Teacher.png" alt="アイコン">
+                <h3>ルービックキューブ先生 (ver 1.0.1)</h3>
+            </div>
+            <p>カメラでキューブをスキャンして、７ステップで解き方を教えてくれる。</p>
+            <div class="btn-group">
+                <a href="/Rubik_s_Cube_Teacher/Rubik-Teacher-Manual.html" class="btn">マニュアルを表示</a>
+                <a href="/Rubik_s_Cube_Teacher/Rubik-Teacher-demo.html" class="btn">デモを開く</a>
+                <a href="/Rubik_s_Cube_Teacher/Rubik_s_Cube_Teacher-1.0.1.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. ゲーム・エンタメ -->
+    <div class="category-section" data-category="game">
+        <h2 class="category-title">🎮 ゲーム・エンタメ</h2>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Auction-House/Auction-House.png" alt="アイコン">
+                <h3>オークションハウス (ver 1.1.0)</h3>
+            </div>
+            <p>秘蔵の逸品が、今宵競われる。</p>
+            <div class="btn-group">
+                <a href="/Auction-House/Auction-House.html" class="btn">マニュアルを表示</a>
+                <a href="/Auction-House/Auction-House-demo.html" class="btn">デモを開く</a>
+                <a href="/Auction-House/Auction-House-v1.1.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/reversi/reversi.png" alt="アイコン">
+                <h3>リバーシ (ver 1.1.3)</h3>
+            </div>
+            <p>オンライン対戦可能なリバーシ（オセロ）ゲームです。</p>
+            <div class="btn-group">
+                <a href="/reversi/reversi_manual.html" class="btn">マニュアルを表示</a>
+                <a href="/reversi/reversi-demo.html" class="btn">デモを開く</a>
+                <a href="/reversi/reversi-1.1.3.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/gomoku/gomoku.png" alt="アイコン">
+                <h3>五目並べ (ver 1.0.0)</h3>
+            </div>
+            <p>オンライン対戦可能な五目並べゲームです。</p>
+            <div class="btn-group">
+                <a href="/gomoku/gomoku.html" class="btn">マニュアルを表示</a>
+                <a href="/gomoku/gomoku-demo.html" class="btn">デモを開く</a>
+                <a href="/gomoku/gomoku-1.0.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/shogi/shogi.png" alt="アイコン">
+                <h3>将棋(ver 1.0.0)</h3>
+            </div>
+            <p>オンライン対戦可能な将棋ゲームです。</p>
+            <div class="btn-group">
+                <a href="/shogi/shogi.html" class="btn">マニュアルを表示</a>
+                <a href="/shogi/shogi-demo.html" class="btn">デモを開く</a>
+                <a href="/shogi/shogi-1.0.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/bingo_club/bingo_club.png" alt="アイコン">
+                <h3>BINGO CLUB (ver 1.1.0)</h3>
+            </div>
+            <p>グループで遊ぶビンゴゲームです。司会者が数字を抽選すると、参加者のカードに自動で印が付きます。</p>
+            <div class="btn-group">
+                <a href="/bingo_club/bingo_club.html" class="btn">マニュアルを表示</a>
+                <a href="/bingo_club/bingo_club-demo.html" class="btn">デモを開く</a>
+                <a href="/bingo_club/bingo_club_1.1.0.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Emergency_Call/Emergency_Call.png" alt="アイコン">
+                <h3>非常ベル・早押しボタン (ver 1.0.1)</h3>
+            </div>
+            <p>グループで共有できる非常ベル・早押しボタン。</p>
+            <div class="btn-group">
+                <a href="/Emergency_Call/Emergency_Call.html" class="btn">マニュアルを表示</a>
+                <a href="/Emergency_Call/Emergency_Call-demo.html" class="btn">デモを開く</a>
+                <a href="/Emergency_Call/Emergency_Call-1.0.1.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/jomo-karuta/jomo-karuta.png" alt="アイコン">
+                <h3>上毛かるた (ver 1.0.4)</h3>
+            </div>
+            <p>ご当地かるたの定番、読み上げ、通信対戦機能付き。</p>
+            <div class="btn-group">
+                <a href="/jomo-karuta/jomo-karuta.html" class="btn">マニュアルを表示</a>
+                <a href="/jomo-karuta/jomo-karuta-demo.html" class="btn">デモを開く</a>
+                <a href="/jomo-karuta/jomo-karuta-1.0.4.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 5. ライフ・ペット -->
+    <div class="category-section" data-category="life">
+        <h2 class="category-title">🐾 ライフ・ペット</h2>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/Cat_s_Household_Budget/Cat_s_Household_Budget.png" alt="アイコン">
+                <h3>ねこの家計簿 (ver 1.0.0)</h3>
+            </div>
+            <p>ねこの家計簿- 収入・支出を登録、月次/年次グラフで可視化。</p>
+            <div class="btn-group">
+                <a href="/Cat_s_Household_Budget/Cat_s_Household_Budget.html" class="btn">マニュアルを表示</a>
+                <a href="/Cat_s_Household_Budget/Cat_s_Household_Budget-demo.html" class="btn">デモを開く</a>
+                <a href="/Cat_s_Household_Budget/Cat_s_Household_Budget.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/nekoshu/nekoshu.png" alt="アイコン">
+                <h3>猫の集会 (ver 1.1.1)</h3>
+            </div>
+            <p>猫好きの方へ送る、グループでペット育成。</p>
+            <div class="btn-group">
+                <a href="/nekoshu/nekoshu.html" class="btn">マニュアルを表示</a>
+                <a href="/nekoshu/nekoshu-demo.html" class="btn">デモを開く</a>
+                <a href="/nekoshu/nekoshu-1.1.1.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/dogrun/dogrun.png" alt="アイコン">
+                <h3>ドッグラン (ver 1.1.1)</h3>
+            </div>
+            <p>犬好きの方へ送る、グループでペット育成。</p>
+            <div class="btn-group">
+                <a href="/dogrun/dogrun.html" class="btn">マニュアルを表示</a>
+                <a href="/dogrun/dogrun-demo.html" class="btn">デモを開く</a>
+                <a href="/dogrun/dogrun-1.1.1.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+        <div class="app-card">
+            <div class="app-card-header">
+                <img src="/aquaryuum/aquaryuum.png" alt="アイコン">
+                <h3>アクアリュウム (ver 1.0.2)</h3>
+            </div>
+            <p>みんなの水槽で金魚を育る、グループでペット育成。</p>
+            <div class="btn-group">
+                <a href="/aquaryuum/aquaryuum.html" class="btn">マニュアルを表示</a>
+                <a href="/aquaryuum/aquaryuum-demo.html" class="btn">デモを開く</a>
+                <a href="/aquaryuum/aquaryuum-1.0.2.xdc" class="btn">ダウンロード</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function filterCategory(category) {
+            const sections = document.querySelectorAll('.category-section');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // ボタンのアクティブ状態切り替え
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // 表示の切り替え
+            sections.forEach(section => {
+                if (category === 'all' || section.getAttribute('data-category') === category) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

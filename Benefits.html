@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>デルタチャットでミニアプリのメリット</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ind:#4f46e5;--ind2:#6366f1;--purple:#7c3aed;--slate900:#0f172a;--slate700:#334155;--slate500:#64748b;--slate200:#e2e8f0;--slate100:#f1f5f9;--slate50:#f8fafc;--green:#10b981}
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans JP",sans-serif;background:var(--slate50);color:var(--slate900);line-height:1.8}
+.container{max-width:1100px;margin:0 auto;padding:0 22px}
+.hero{background:radial-gradient(900px 500px at 15% 0%,#818cf8 0%,transparent 60%),radial-gradient(800px 400px at 85% 10%,#a78bfa 0%,transparent 60%),linear-gradient(135deg,#4338ca 0%,#4f46e5 45%,#6d28d9 100%);color:#fff;padding:80px 0 70px;text-align:center}
+.hero h1{font-size:clamp(30px,5vw,48px);font-weight:900;line-height:1.15;letter-spacing:-.03em;margin:16px 0 14px}
+.hero p{max-width:760px;margin:0 auto;font-size:clamp(14px,1.9vw,18px);opacity:.92}
+.badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(10px);padding:6px 14px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.1em}
+.card{background:#fff;border:1px solid var(--slate200);border-radius:20px;padding:24px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 12px 32px rgba(15,23,42,.06)}
+.kicker{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--ind);text-transform:uppercase;margin-bottom:8px}
+h2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:0 0 12px}
+h3{font-size:16px;font-weight:700;margin:0 0 8px}
+.section{padding:42px 0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:12px}
+.i-indigo{background:#eef2ff;color:var(--ind)} .i-purple{background:#f5f3ff;color:var(--purple)} .i-green{background:#ecfdf5;color:#059669} .i-amber{background:#fffbeb;color:#b45309}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin:16px 0}
+.node{background:#fff;border:1px solid var(--slate200);border-radius:14px;padding:12px 16px;min-width:148px;text-align:center;box-shadow:0 2px 10px rgba(0,0,0,.04);font-size:13px}
+.arrow{color:var(--slate500);font-size:20px}
+.compare{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--slate200);border-radius:16px;overflow:hidden;background:#fff}
+.compare th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate500);padding:14px 16px;background:var(--slate100);text-align:left}
+.compare td{padding:13px 16px;border-top:1px solid var(--slate200);font-size:13.5px}
+.yes{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;display:inline-block}
+.no{background:#fef2f2;color:#b91c1c;border:1px solid #fecaca;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;display:inline-block}
+.mid{background:#fffbeb;color:#92400e;border:1px solid #fde68a;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;display:inline-block}
+.code{background:#0f172a;color:#e2e8f0;border-radius:14px;padding:16px;font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.7;overflow:auto}
+.diagram{background:#0f172a;color:#cbd5e1;border-radius:16px;padding:18px;overflow:auto}
+.diagram pre{margin:0;font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.65;white-space:pre-wrap}
+ul.clean{list-style:none;padding:0;margin:0}
+ul.clean li{padding:6px 0 6px 26px;position:relative;font-size:13.5px}
+ul.clean li::before{content:"✔";position:absolute;left:4px;top:6px;color:var(--green);font-weight:900}
+footer{padding:36px 0 50px;text-align:center;color:var(--slate500);font-size:11.5px}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="container">
+    <span class="badge">DELTA CHAT + WEBXDC</span>
+    <h1>デルタチャットで<br>ミニアプリのメリット</h1>
+    <p>ファイルをチャットに送るだけで、専用アプリサーバー不要。<br>全員で同じアプリを使い、同じデータを自動で共有できる。プライバシーとオフラインに強い、新しいアプリの形。</p>
+  </div>
+</div>
+
+<main class="container">
+  <!-- What is -->
+  <section class="section">
+    <div class="grid2">
+      <div class="card">
+        <div class="kicker">What is Webxdc?</div>
+        <h2>ミニアプリ（Webxdc）とは？</h2>
+        <p style="font-size:14px;color:var(--slate700)">HTML / JavaScriptで作られた小さなアプリを、デルタチャットの会話の中でそのまま動かす仕組みです。実体は <strong>.xdc = ZIP</strong>（index.html, CSS, JS, manifest.toml, icon）。デルタチャットがネットワーク遮断したWebViewで実行し、データ共有はチャット自体のメール配送で行います。</p>
+        <div class="code" style="margin-top:14px">my-app.xdc (ZIP)
+├─ index.html  → &lt;script src="webxdc.js"&gt;
+├─ app.js / style.css
+├─ manifest.toml
+└─ icon.png
+※ webxdc.jsはDelta Chatが注入</div>
+      </div>
+      <div class="card" style="background:linear-gradient(180deg,#eef2ff,#fff)">
+        <div class="kicker">How it works</div>
+        <h2>どう動く？ 3ステップ</h2>
+        <div class="flow">
+          <div class="node"><strong>① 配布</strong><br>.xdcをチャットに添付</div>
+          <div class="arrow">→</div>
+          <div class="node"><strong>② 起動</strong><br>StartタップでWebView起動<br>ネットワークOFF</div>
+          <div class="arrow">→</div>
+          <div class="node"><strong>③ 同期</strong><br>sendUpdateで自動共有<br>メールで配送</div>
+        </div>
+        <ul class="clean">
+          <li>URL発行・ストア申請不要。送るだけで配布完了</li>
+          <li>インターネットへの通信は技術的にブロック。外部送信ゼロ</li>
+          <li>各端末で独立起動、操作はメール経由で全員に届く</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagram -->
+  <section class="section" style="padding-top:0">
+    <div class="card">
+      <div class="kicker">Architecture</div>
+      <h2>従来型とWebxdcで何が違う？</h2>
+      <div class="grid2" style="margin-top:10px">
+        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:16px;padding:18px">
+          <h3 style="color:#991b1b">従来のWebアプリ / LINEミニアプリ</h3>
+          <div style="text-align:center;margin:12px 0"><span class="node" style="display:inline-block">ユーザー ↔ クラウドサーバー/DB ↔ ユーザー</span></div>
+          <ul style="font-size:13px;color:#7f1d1d;margin:0;padding-left:18px">
+            <li>サーバー・DB・ドメインが必須、維持費がかかる</li>
+            <li>個人情報が外部サーバーへ、トラッキングの懸念</li>
+            <li>ネットが切れると停止、閉域網では使えない</li>
+          </ul>
+        </div>
+        <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:16px;padding:18px">
+          <h3 style="color:#065f46">Delta Chat + Webxdc</h3>
+          <div style="text-align:center;margin:12px 0"><span class="node" style="display:inline-block">ユーザー → メール配送(E2E) → ユーザー<br><small>チャットがトランスポート</small></span></div>
+          <ul style="font-size:13px;color:#065f46;margin:0;padding-left:18px">
+            <li>専用アプリサーバー不要、.xdcを送るだけで即利用</li>
+            <li>ネットワーク遮断により、アプリからの外部通信を防止</li>
+            <li>ローカルSMTP/IMAP、メッシュWi-Fiでも動作</li>
+          </ul>
+        </div>
+      </div>
+      <div class="diagram" style="margin-top:18px">
+        <pre>同期の仕組み：sendUpdate / setUpdateListener
+
+[端末A] sendUpdate({payload:{vote:"A"}, info:"Kawaさんが投票"}) 
+        ↓ Delta Chatのメール配送 (SMTP/IMAP + E2E暗号化)
+[端末B] setUpdateListener((updates)=>{ render(updates) })
+        ↓ チャットには info が「Kawaさんが投票しました」と履歴表示
+
+payloadは任意のJSON。通信コードを書かなくても全員に届く。</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section" style="padding-top:0">
+    <div class="kicker" style="text-align:center">Benefits</div>
+    <h2 style="text-align:center">6つのメリット</h2>
+    <div class="grid3" style="margin-top:18px">
+      <div class="card"><div class="icon i-indigo">🔒</div><h3>① プライバシー最優先</h3><p style="font-size:13px;color:var(--slate700)">Webxdcアプリからの外部通信を制限し、 トラッキングリスクを大幅に低減。</p></div>
+      <div class="card"><div class="icon i-purple">☁️✕</div><h3>② 専用アプリサーバー不要・ゼロコスト</h3><p style="font-size:13px;color:var(--slate700)">専用アプリサーバーやデータベース運用が不要。ファイル配布だけで全員が使える。</p></div>
+      <div class="card"><div class="icon i-green">🔄</div><h3>③ 自動で状態共有</h3><p style="font-size:13px;color:var(--slate700)">sendUpdateで送り、setUpdateListenerで受けるだけ。投票、ToDo、スコアが自動で同期。</p></div>
+      <div class="card"><div class="icon i-amber">📡</div><h3>④ オフライン・閉域網で強い</h3><p style="font-size:13px;color:var(--slate700)">社内LAN、工場ネットワーク、避難所のメッシュWi-Fi、イベント会場。ネットがなくても動く。</p></div>
+      <div class="card"><div class="icon i-indigo">📦</div><h3>⑤ チャットで配布</h3><p style="font-size:13px;color:var(--slate700)">URLやQRは不要。チャットに送るだけ。受け取った人はStartタップで即起動。</p></div>
+      <div class="card"><div class="icon i-purple">📱</div><h3>⑥ ストア不要・全OS対応</h3><p style="font-size:13px;color:var(--slate700)">Android / iOS / Windows / macOS / Linuxで同一動作。App Store審査なしで社内配布も自由。</p></div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="section" style="padding-top:0">
+    <div class="card">
+      <div class="kicker">Comparison</div>
+      <h2>他の仕組みとの比較</h2>
+      <div style="overflow:auto;margin-top:14px">
+        <table class="compare">
+          <thead><tr><th>項目</th><th>一般的なチャット + Webアプリ</th><th>Telegram Mini App</th><th style="background:#eef2ff;color:#4338ca">Delta Chat + Webxdc</th></tr></thead>
+          <tbody>
+            <tr><td><strong>配布</strong></td><td>URL / ストア審査</td><td>Bot経由URL</td><td><span class="yes">チャットに.xdc送信だけ</span></td></tr>
+            <tr><td><strong>専用アプリサーバー</strong></td><td><span class="no">必須</span></td><td><span class="no">必須</span></td><td><span class="yes">不要</span></td></tr>
+            <tr><td><strong>外部送信/追跡</strong></td><td><span class="no">可能</span></td><td><span class="no">可能</span></td><td><span class="yes">Webxdcアプリからの任意通信は制限</span></td></tr>
+            <tr><td><strong>オフライン</strong></td><td><span class="no">不可</span></td><td><span class="no">不可</span></td><td><span class="yes">アプリ実行 → 可 / 更新同期 → 不可</span></td></tr>
+            <tr><td><strong>閉域網利用</strong></td><td><span class="mid">△ 要開発</span></td><td><span class="no">不可</span></td><td><span class="yes">◎ ローカルメールで可</span></td></tr>
+            <tr><td><strong>同期</strong></td><td>自前実装</td><td>自前実装</td><td><span class="yes">sendUpdateで自動</span></td></tr>
+            <tr><td><strong>E2E暗号化</strong></td><td>サービス依存</td><td>サービス依存</td><td><span class="yes">標準対応</span></td></tr>
+            <tr><td><strong>開発の容易さ</strong></td><td><span class="no">-</span></td><td>-</td><td><span class="yes">HTML/CSS/JavaScriptだけ</span></td></tr>
+            <tr><td><strong>ストア登録</strong></td><td><span class="no">必要</span></td><td>不要/審査あり</td><td><span class="yes">不要</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use cases -->
+  <section class="section" style="padding-top:0">
+    <div class="grid2">
+      <div class="card">
+        <div class="kicker">Use Cases</div>
+        <h2>こんな場面で活躍</h2>
+        <div style="margin-top:10px">
+          <h3>🏢 業務・受付・現場</h3>
+          <ul style="font-size:13px;padding-left:18px;color:var(--slate700)">
+            <li>来訪受付 → 担当呼出 → 来館記録を1つのアプリで</li>
+            <li>備品購入依頼の重複防止（備品Hub）</li>
+            <li>在席確認、進捗共有、点検記録、工場LAN対応</li>
+          </ul>
+          <div style="margin-top:14px"><h3>🚨 防災・イベント</h3>
+          <ul style="font-size:13px;padding-left:18px;color:var(--slate700)">
+            <li>安否確認、避難所受付、物資管理</li>
+            <li>インターネットが使えない会場でも日程調整や情報共有</li>
+          </ul></div>
+        </div>
+      </div>
+      <div class="card" style="background:#0f172a;color:#e2e8f0">
+        <div class="kicker" style="color:#a5b4fc">Interactive</div>
+        <h2 style="color:#fff">遊び・合意形成も得意</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin:14px 0">
+          <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-size:12px">🎮 リバーシ / チェス / 五目並べ</span>
+          <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-size:12px">📊 投票 / アンケート</span>
+          <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-size:12px">📝 共同ToDo / カンバン</span>
+          <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-size:12px">🗺️ 地図メモ</span>
+          <span style="background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);padding:6px 12px;border-radius:999px;font-size:12px">🎨 お絵かき伝言</span>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,.12);margin:16px 0"></div>
+        <h3 style="color:#c7d2fe">実装イメージ</h3>
+        <div class="code" style="background:#1e293b;margin-top:8px">&lt;script src="webxdc.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+// 投票を送る
+webxdc.sendUpdate({
+  payload:{ vote:"A" },
+  info:"Kawaさんが投票"
+});
+// 全員の更新を受ける
+webxdc.setUpdateListener((u)=&gt;{
+  u.forEach(x=&gt; render(x.payload));
+});
+&lt;/script&gt;</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Limitations & summary -->
+  <section class="section" style="padding-top:0">
+    <div class="grid2">
+      <div class="card">
+        <div class="kicker">Note</div>
+        <h2>知っておきたいこと</h2>
+        <ul style="font-size:13px;padding-left:18px;color:var(--slate700)">
+          <li><strong>サイズは軽量に</strong>：メール添付で配布するため数MB以内推奨</li>
+          <li><strong>外部通信不可</strong>：プライバシーの代わりに外部APIは呼べない</li>
+          <li><strong>更新は再配布</strong>：新しい.xdcをチャットに送り直す</li>
+          <li><strong>保存は自前</strong>：localStorageやsendUpdate履歴から復元する設計に</li>
+        </ul>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;border:0">
+        <div class="kicker" style="color:#c7d2fe">One Line</div>
+        <h2 style="color:#fff">最大の特徴を一言で</h2>
+        <p style="font-size:20px;font-weight:800;line-height:1.4;margin:10px 0">チャットに送るだけで、<br>専用アプリサーバー不要で<br>アプリが配布・共有できる。</p>
+        <p style="font-size:13px;opacity:.9">Web技術だけで開発でき、プライバシーを重視しながら、オフライン環境や閉域網でも活用できる。</p>
+        <p style="font-size:13px;opacity:.9">Webxdcはメール配送を利用した分散同期型ミニアプリ基盤であり、受付・防災・現場業務の新しい選択肢となる。</p>
+        <p style="font-size:13px;opacity:.9">メールという既存インフラを活用し、専用サーバーに依存しないミニアプリを実現する仕組み。受付・防災・現場でクラウドに頼らない選択肢になります。</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container">Delta Chat + Webxdc — .xdcはZIP、ネットワーク遮断WebView、sendUpdate同期、Privacy by design、Offline-first、Cross-platform<br>© 2026</div></footer>
+</body>
+</html>
