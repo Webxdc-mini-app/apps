@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ミニアプリストア｜箱舟プロジェクト</title>
+<meta name="description" content="Delta Chat の中で使えるミニアプリ（Webxdc）のダウンロードサイト。防災・職場・お店・学び・遊び・暮らしのアプリを、デモで試してから使えます。">
+<style>
+:root {
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#f3f8fb;
+  --sf:#fff;
+  --tx:#26323a;
+  --mu:#465862;
+  --ln:#c9dbe6;
+  --pr:#1f6aa8;
+  --onpr:#fff;
+  --hero:#dcedf8;
+  --ft:#fff4d6;
+  --ftb:#e3b94f;
+  --dk:#26323a;
+  --sh:rgba(40,70,90,.1)
+}
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme:dark;
+    --bg:#16212a;
+    --sf:#1f2d38;
+    --tx:#eef4f8;
+    --mu:#b8c7d3;
+    --ln:#375061;
+    --pr:#8cc4f5;
+    --onpr:#0f2230;
+    --hero:#1f2d38;
+    --ft:#3a3220;
+    --ftb:#9a7d2c;
+    --sh:rgba(0,0,0,.3)
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme:dark;
+  --bg:#16212a;
+  --sf:#1f2d38;
+  --tx:#eef4f8;
+  --mu:#b8c7d3;
+  --ln:#375061;
+  --pr:#8cc4f5;
+  --onpr:#0f2230;
+  --hero:#1f2d38;
+  --ft:#3a3220;
+  --ftb:#9a7d2c;
+  --sh:rgba(0,0,0,.3)
+}
+*,*::before,*::after {
+  box-sizing:inherit
+}
+html {
+  font-size:112.5%;
+  scroll-behavior:smooth
+}
+html[data-fs="l"] {
+  font-size:131%
+}
+html[data-fs="xl"] {
+  font-size:150%
+}
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--tx);
+  font:400 1rem/1.9 "Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",Meiryo,sans-serif
+}
+a {
+  color:inherit
+}
+:focus-visible {
+  outline:4px solid #d9730d;
+  outline-offset:3px
+}
+.wrap {
+  max-width:62rem;
+  margin:0 auto;
+  padding:0 1.1rem
+}
+header.hero {
+  background:var(--hero);
+  padding:1.8rem 0 2rem;
+  border-radius:0 0 2.2rem 2.2rem
+}
+.brand {
+  margin:0 0 .4rem;
+  color:var(--mu);
+  font-size:.85rem
+}
+h1 {
+  font-weight:700;
+  font-size:clamp(1.7rem,6vw,2.5rem);
+  line-height:1.45;
+  margin:0 0 .6rem
+}
+.lead {
+  max-width:30em;
+  margin:0 0 1rem;
+  font-size:1.05rem
+}
+.fs {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  align-items:center;
+  margin:0 0 1.3rem
+}
+.fs span {
+  font-weight:700
+}
+.steps {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:.9rem;
+  margin:0;
+  padding:0;
+  list-style:none
+}
+.steps li {
+  background:var(--sf);
+  border:2px solid var(--ln);
+  border-radius:1.3rem;
+  padding:.8rem 1.1rem;
+  font-weight:700;
+  line-height:1.6;
+  box-shadow:0 3px 8px var(--sh)
+}
+.steps small {
+  display:block;
+  font-weight:400;
+  color:var(--mu)
+}
+.bar {
+  background:transparent;
+  padding-top:1.2rem
+}
+.bar .wrap {
+  display:flex;
+  flex-direction:column;
+  gap:.8rem
+}
+.bar input {
+  min-height:3.4rem;
+  font:inherit;
+  padding:.3rem 1.2rem;
+  border:2px solid var(--ln);
+  border-radius:1.2rem;
+  background:var(--sf);
+  color:var(--tx)
+}
+.chips {
+  display:flex;
+  flex-wrap:wrap;
+  gap:.6rem
+}
+#tags {
+  display:none
+}
+.chip {
+  min-height:3.2rem;
+  padding:0 1.1rem;
+  font:inherit;
+  font-weight:700;
+  border:2px solid var(--pr);
+  background:var(--sf);
+  color:var(--pr);
+  border-radius:1.2rem;
+  cursor:pointer
+}
+.chip[aria-pressed="true"] {
+  background:var(--pr);
+  color:var(--onpr)
+}
+main {
+  padding:.5rem 0 3.5rem
+}
+h2 {
+  font-size:1.45rem;
+  font-weight:700;
+  line-height:1.5;
+  margin:2.4rem 0 .3rem;
+  padding:.35rem 1.1rem;
+  background:var(--ac,#dbeafb);
+  color:var(--dk);
+  border-radius:1.1rem
+}
+.sub {
+  margin:.3rem 0 1rem;
+  color:var(--mu)
+}
+#c-b {
+  --ac:#ffdccf
+}
+#c-w {
+  --ac:#d6e8fb
+}
+#c-s {
+  --ac:#fde7b0
+}
+#c-l {
+  --ac:#dcf0c8
+}
+#c-g {
+  --ac:#e4d9fa
+}
+#c-h {
+  --ac:#ffd8e6
+}
+#picks .app:nth-child(1) {
+  --ac:#fde7b0
+}
+#picks .app:nth-child(2) {
+  --ac:#dcf0c8
+}
+#picks .app:nth-child(3) {
+  --ac:#d6e8fb
+}
+.feat {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:1rem;
+  align-items:center;
+  background:var(--ft);
+  border:2px solid var(--ftb);
+  border-radius:1.5rem;
+  padding:1.2rem
+}
+.feat h3 {
+  margin:0 0 .2rem;
+  font-size:1.3rem
+}
+.feat p {
+  margin:0
+}
+.badge {
+  display:inline-block;
+  background:#ffd666;
+  color:#26323a;
+  font-size:.85rem;
+  font-weight:700;
+  padding:0 .8rem;
+  border-radius:1rem;
+  margin-bottom:.3rem
+}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(19rem,1fr));
+  gap:1.1rem
+}
+.app {
+  background:var(--sf);
+  border:2px solid var(--ln);
+  border-radius:1.5rem;
+  padding:1.1rem;
+  display:flex;
+  flex-direction:column;
+  gap:.6rem;
+  box-shadow:0 3px 8px var(--sh)
+}
+.app .top {
+  display:flex;
+  gap:.9rem;
+  align-items:center
+}
+.ic {
+  flex:none;
+  width:4rem;
+  height:4rem;
+  border-radius:1.2rem;
+  background:var(--ac,#dcf0c8);
+  display:grid;
+  place-items:center;
+  font-size:2.2rem;
+  line-height:1;
+  overflow:hidden
+}
+.ic img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
+.dh img {
+  width:2.4rem;
+  height:2.4rem;
+  border-radius:.6rem;
+  vertical-align:middle;
+  background:#fff
+}
+#fi img {
+  width:2.2rem;
+  height:2.2rem;
+  border-radius:.5rem;
+  vertical-align:middle
+}
+.app h3 {
+  margin:0;
+  font-size:1.15rem;
+  line-height:1.5
+}
+.app p {
+  margin:0;
+  color:var(--mu);
+  flex:1
+}
+.pill {
+  display:inline-block;
+  font-size:.8rem;
+  border-radius:1rem;
+  padding:0 .7rem;
+  margin-right:.3rem;
+  background:var(--bg);
+  border:1px solid var(--ln)
+}
+.row {
+  display:flex;
+  gap:.7rem;
+  flex-wrap:wrap;
+  margin-top:.3rem
+}
+.btn,.lnk {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex:1 1 8rem;
+  min-height:3.4rem;
+  padding:0 1rem;
+  font:inherit;
+  font-weight:700;
+  border-radius:1.2rem;
+  border:2px solid var(--pr);
+  text-decoration:none;
+  cursor:pointer
+}
+.btn {
+  background:var(--pr);
+  color:var(--onpr)
+}
+.btn.s,.lnk {
+  background:var(--sf);
+  color:var(--pr)
+}
+.empty {
+  padding:1.8rem;
+  text-align:center;
+  color:var(--mu);
+  background:var(--sf);
+  border:2px dashed var(--ln);
+  border-radius:1.5rem
+}
+dialog {
+  width:min(36rem,calc(100% - 1.5rem));
+  border:0;
+  border-radius:1.8rem;
+  padding:0;
+  background:var(--sf);
+  color:var(--tx);
+  overflow:hidden
+}
+dialog::backdrop {
+  background:rgba(20,40,55,.6)
+}
+.dh {
+  background:var(--pr);
+  color:var(--onpr);
+  padding:1.1rem 1.3rem;
+  display:flex;
+  gap:.8rem;
+  align-items:center
+}
+.dh h3 {
+  margin:0;
+  font-size:1.25rem;
+  flex:1
+}
+.dh .x {
+  background:var(--sf);
+  border:0;
+  color:var(--pr);
+  border-radius:1rem;
+  min-height:3rem;
+  padding:0 1.1rem;
+  font:inherit;
+  font-weight:700;
+  cursor:pointer
+}
+.db {
+  padding:1.2rem 1.3rem 1.5rem
+}
+.db ol {
+  padding-left:1.4em;
+  margin:.5rem 0 1.2rem
+}
+.db li {
+  margin-bottom:.4rem
+}
+.note {
+  font-size:.85rem;
+  color:var(--mu)
+}
+details {
+  margin-top:.8rem;
+  background:var(--sf);
+  border:2px solid var(--ln);
+  border-radius:1.5rem;
+  padding:.4rem 1.1rem
+}
+summary {
+  min-height:3.2rem;
+  display:flex;
+  align-items:center;
+  font-weight:700;
+  cursor:pointer
+}
+footer {
+  background:var(--hero);
+  color:var(--tx);
+  padding:1.4rem 0;
+  font-size:.85rem
+}
+.pre {
+  margin:1.1rem 0 0;
+  padding:.7rem 1rem;
+  background:var(--sf);
+  color:var(--tx);
+  border:2px solid var(--ln);
+  border-radius:1.1rem
+}
+.pre a {
+  font-weight:700;
+  color:var(--pr)
+}
+.legal ul {
+  display:block
+}
+.legal li {
+  margin-bottom:.6rem
+}
+.ph {
+  background:#fff1b8;
+  color:#26323a;
+  padding:0 .4rem;
+  border-radius:.4rem;
+  outline:1px dashed #b28900
+}
+.about {
+  background:var(--sf);
+  border:2px solid var(--ln);
+  border-radius:1.5rem;
+  padding:1.2rem 1.3rem;
+  margin-top:1.2rem
+}
+.about h2 {
+  margin-top:0
+}
+.about ul {
+  list-style:none;
+  margin:1rem 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  gap:.9rem
+}
+.about li {
+  background:var(--bg);
+  border-radius:1.1rem;
+  padding:.8rem 1rem;
+  line-height:1.7
+}
+.about li span {
+  display:block;
+  font-size:1.6rem;
+  line-height:1.4
+}
+.about p {
+  margin:.6rem 0 0
+}
+@media (max-width:640px) {
+  .steps {
+    grid-template-columns:1fr
+  }
+  .feat {
+    grid-template-columns:1fr
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto
+  }
+}
+[hidden] {
+  display:none!important
+}
+html {
+  scroll-padding-top:.5rem
+}
+.ic {
+  position:relative
+}
+.ic img {
+  position:absolute;
+  inset:0
+}
+.fi {
+  position:relative;
+  display:inline-block;
+  width:2.2rem;
+  height:2.2rem;
+  vertical-align:middle;
+  overflow:hidden;
+  border-radius:.5rem;
+  text-align:center;
+  line-height:2.2rem;
+  font-size:1.5rem
+}
+.fi img {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.chip {
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none
+}
+nav.chips {
+  padding:0
+}
+</style>
+</head>
+<body>
+<!--
+  【アプリのバージョンを更新するとき】
+    1. 下の「アプリ一覧」で、更新するアプリを探す（「▼ アプリ名」で検索すると見つかります）
+    2. 「ダウンロード」の href にある .xdc ファイル名の、バージョン番号を書き換える
+         例: genba-log-1.5.0.xdc  を  genba-log-1.6.0.xdc  に変更
+    3. 「はじめての方に」と「スターターキット」は、一覧の同じアプリへのリンクなので、書き換えは不要
+
+  【アプリを追加するとき】
+    ・「▼ アプリ名」から article 終了タグまでのひとかたまりを、同じカテゴリ内にコピーして書き換える
+-->
+<header class="hero"><div class="wrap">
+    <p class="brand">箱舟プロジェクト / Ark Project</p>
+    <h1>チャットで使える、<br>かんたんアプリ集</h1>
+    <p class="lead">無料のチャットアプリ「Delta Chat」の中で、みんなで使えるアプリです。むずかしい登録はいりません。<br><a href="https://webxdc-mini-app.github.io/apps/Benefits.html" target="_blank" rel="noopener">Delta Chat でミニアプリを使うメリットを見る</a></p>
+    <div class="fs" hidden role="group" aria-label="文字の大きさ"><span>文字の大きさ：</span><button class="chip" data-fs="m" aria-pressed="true">ふつう</button><button class="chip" data-fs="l" aria-pressed="false">大きい</button><button class="chip" data-fs="xl" aria-pressed="false">とても大きい</button></div>
+    <ol class="steps">
+      <li>1. えらぶ<small>気になるアプリを見つけます</small></li>
+      <li>2. ためす<small>ダウンロードの前に体験できます</small></li>
+      <li>3. みんなで使う<small>チャットに送るだけです</small></li>
+    </ol>
+    <p class="pre"><b>はじめに、チャットアプリ「Delta Chat」を入れてください。</b>ミニアプリは、このアプリの中で使います。 <a href="https://delta.chat" target="_blank" rel="noopener">Delta Chat の公式サイトへ（外部サイト）</a></p>
+  </div>
+</header>
+
+<div class="bar"><div class="wrap">
+    <input id="q" type="search" hidden placeholder="さがしたい言葉を入力（例：将棋、予約）" aria-label="アプリを探す">
+    <nav class="chips" aria-label="目的から探す"><a class="chip" href="#pick">はじめての方に</a><a class="chip" href="#c-b">🆘 防災・避難所</a><a class="chip" href="#c-w">🏢 職場・事務</a><a class="chip" href="#c-s">🏨 お店・受付</a><a class="chip" href="#c-l">📚 学校・学び</a><a class="chip" href="#c-g">🎮 遊ぶ</a><a class="chip" href="#c-h">🐾 暮らし・ペット</a></nav>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="about" id="about"><h2>このサイトについて</h2>
+    <p>「箱舟プロジェクト（Ark Project）」は、チャットアプリ Delta Chat の中で使えるミニアプリ（Webxdc）を、<b>日本語で、日本の暮らしや現場に合わせて</b>集めたダウンロードサイトです。</p>
+    <ul>
+      <li><span aria-hidden="true">🆘</span><b>防災・避難所のアプリがそろっています</b><br>安否確認、物資管理、当番表、入退場、共有地図など。5つをまとめたスターターキットもあります。</li>
+      <li><span aria-hidden="true">📶</span><b>ネットが不安定な場所でも</b><br>インターネットが使えない避難所での共有を想定したアプリがあります。対応状況はアプリごとに違うため、説明をご確認ください。</li>
+      <li><span aria-hidden="true">🔍</span><b>ためしてから選べます</b><br>すべてのアプリに「ためしてみる（デモ）」と使い方（マニュアル）があります。</li>
+      <li><span aria-hidden="true">🎎</span><b>日本の暮らしに合った内容</b><br>将棋・囲碁・かるたなどの遊びや、出退勤管理、予約台帳、子ども食堂向けの注文台帳など、身近な場面のアプリです。</li>
+    </ul>
+  </section>
+  <section id="pick"><h2>はじめての方に</h2>
+    <p class="sub">まずは、この3本から試してみてください。</p>
+    <div class="grid" id="picks"><article class="app">
+        <div class="top"><div class="ic" aria-hidden="true"><span>⚫</span><img src="https://webxdc-mini-app.github.io/reversi/reversi.png" alt="" loading="lazy"></div>
+          <h3>リバーシ</h3>
+        </div>
+        <p>オンライン対戦できるリバーシ（オセロ）です。</p>
+        <div class="row"><a class="btn" href="#a-reversi">アプリを見る</a></div>
+        </article><article class="app">
+        <div class="top"><div class="ic" aria-hidden="true"><span>🗳</span><img src="https://webxdc-mini-app.github.io/ChatVote/ChatVote.png" alt="" loading="lazy"></div>
+          <h3>ちゃっと投票</h3>
+        </div>
+        <p>圏外でも投票でき、電波が戻ると集計が合います。</p>
+        <div class="row"><a class="btn" href="#a-ChatVote">アプリを見る</a></div>
+        </article><article class="app">
+        <div class="top"><div class="ic" aria-hidden="true"><span>📝</span><img src="https://webxdc-mini-app.github.io/genba-log/genba-log.png" alt="" loading="lazy"></div>
+          <h3>げんばログ</h3>
+        </div>
+        <p>文章・写真・数値で日誌を記録し、仲間と共有します。</p>
+        <div class="row"><a class="btn" href="#a-genba-log">アプリを見る</a></div>
+    </article></div>
+  </section>
+  <section id="kit" style="margin-top:30px"><div class="feat"><div><span class="badge">防災のおすすめ</span><h3><span class="fi"><span>🏠</span><img src="https://webxdc-mini-app.github.io/shelter-starter-kit/shelter-starter-kit.png" alt="" loading="lazy"></span> 避難所運営スターターキット</h3>
+        <p>地図・入退場・物資・安否・当番の5つをひとつにまとめた、避難所運営の基本セットです。</p>
+      </div>
+      <div class="row"><a class="btn" href="#a-shelter-starter-kit">アプリを見る</a></div>
+    </div>
+  </section>
+  <div id="list">
+    <!-- ===== 防災・避難所 ===== -->
+    <section id="c-b" class="cat"><h2>🆘 防災・避難所</h2>
+      <p class="sub">停電や圏外でも、みんなで状況を共有する</p>
+      <div class="grid"><!-- ▼ ちゃっと安否確認 -->
+        <article class="app" id="a-chatto-anpi">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🙋</span><img src="https://webxdc-mini-app.github.io/chatto-anpi/chatto-anpi.png" alt="" loading="lazy"></div>
+            <h3>ちゃっと安否確認</h3>
+          </div>
+          <p>避難所で、安否・居場所・支援の情報を共有します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chatto-anpi/chatto-anpi-1.0.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chatto-anpi/chatto-anpi-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chatto-anpi/chatto-anpi.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっと当番表 -->
+        <article class="app" id="a-chat-touban">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>📋</span><img src="https://webxdc-mini-app.github.io/chat-touban/chat-touban.png" alt="" loading="lazy"></div>
+            <h3>ちゃっと当番表</h3>
+          </div>
+          <p>当番・リーダー・参加状況・引継ぎをみんなで確認できます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chat-touban/chat-touban-1.2.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chat-touban/chat-touban-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chat-touban/chat-touban.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっと物資管理 -->
+        <article class="app" id="a-chatto-busshi">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>📦</span><img src="https://webxdc-mini-app.github.io/chatto-busshi/chatto-busshi.png" alt="" loading="lazy"></div>
+            <h3>ちゃっと物資管理</h3>
+          </div>
+          <p>物資の数と不足している物を、全員で共有します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chatto-busshi/chatto-busshi-1.0.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chatto-busshi/chatto-busshi-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chatto-busshi/chatto-busshi.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっと入退場 -->
+        <article class="app" id="a-chat_nyutaijo">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🎫</span><img src="https://webxdc-mini-app.github.io/chat_nyutaijo/chat_nyutaijo.png" alt="" loading="lazy"></div>
+            <h3>ちゃっと入退場</h3>
+          </div>
+          <p>QRコードで入退場や世帯、物資の受け取りを記録します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chat_nyutaijo/chat_nyutaijo-1.6.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chat_nyutaijo/chat_nyutaijo-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chat_nyutaijo/chat_nyutaijo.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっとピンマップ -->
+        <article class="app" id="a-chatto_pinmap">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>📍</span><img src="https://webxdc-mini-app.github.io/chatto_pinmap/chatto_pinmap.png" alt="" loading="lazy"></div>
+            <h3>ちゃっとピンマップ</h3>
+          </div>
+          <p>みんなで書き込める共有地図。オフラインでも使えます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chatto_pinmap/chatto_pinmap-2.4.16.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chatto_pinmap/chatto_pinmap-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chatto_pinmap/chatto_pinmap.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 避難所運営スターターキット -->
+        <article class="app" id="a-shelter-starter-kit">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🏠</span><img src="https://webxdc-mini-app.github.io/shelter-starter-kit/shelter-starter-kit.png" alt="" loading="lazy"></div>
+            <h3>避難所運営スターターキット</h3>
+          </div>
+          <p>地図・入退場・物資・安否・当番の5つをまとめた基本セットです。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/shelter-starter-kit/shelter-starter-kit-1.2.3.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/shelter-starter-kit/shelter-starter-kit-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/shelter-starter-kit/shelter-starter-kit.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+
+        <!-- ▼ ちゃっと放送局 -->
+        <article class="app" id="a-shelter-starter-kit">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>📺</span><img src="https://webxdc-mini-app.github.io/chatto-broadcast/chatto-broadcast.png" alt="" loading="lazy"></div>
+            <h3>ちゃっと放送局</h3>
+          </div>
+          <p>音声・動画の配信とLIVE、一言メッセージでつながる、閉域LANでも使えるミニ放送局。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chatto-broadcast/chatto-broadcast-1.6.3.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chatto-broadcast/chatto-broadcast-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chatto-broadcast/chatto-broadcast.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== 職場・事務 ===== -->
+    <section id="c-w" class="cat"><h2>🏢 職場・事務</h2>
+      <p class="sub">日々の記録や備品、連絡の管理に</p>
+      <div class="grid"><!-- ▼ ちゃっと投票 -->
+        <article class="app" id="a-ChatVote">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🗳</span><img src="https://webxdc-mini-app.github.io/ChatVote/ChatVote.png" alt="" loading="lazy"></div>
+            <h3>ちゃっと投票</h3>
+          </div>
+          <p>圏外でも投票でき、電波が戻ると集計が合います。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/ChatVote/ChatVote-1.3.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/ChatVote/ChatVote-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/ChatVote/ChatVote.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ げんばログ -->
+        <article class="app" id="a-genba-log">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>📝</span><img src="https://webxdc-mini-app.github.io/genba-log/genba-log.png" alt="" loading="lazy"></div>
+            <h3>げんばログ</h3>
+          </div>
+          <p>文章・写真・数値で日誌を記録し、仲間と共有します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/genba-log/genba-log-1.5.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/genba-log/genba-log-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/genba-log/genba-log.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 出退勤管理 -->
+        <article class="app" id="a-attendance_management">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>⏱</span><img src="https://webxdc-mini-app.github.io/attendance_management/attendance_management.png" alt="" loading="lazy"></div>
+            <h3>出退勤管理</h3>
+          </div>
+          <p>日々の出退勤を記録し、月ごとに集計してCSVで出せます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/attendance_management/attendance_management_v2.1.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/attendance_management/attendance_management-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/attendance_management/attendance_management_munual.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 備品BOX -->
+        <article class="app" id="a-Supply_BOX">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🧰</span><img src="https://webxdc-mini-app.github.io/Supply_BOX/Supply_BOX.png" alt="" loading="lazy"></div>
+            <h3>備品BOX</h3>
+          </div>
+          <p>備品の貸し出しと返却を記録します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Supply_BOX/Supply_BOX_1.0.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Supply_BOX/Supply_BOX-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Supply_BOX/Supply_BOX.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 備品Hub -->
+        <article class="app" id="a-Supply_Hub">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🛒</span><img src="https://webxdc-mini-app.github.io/Supply_Hub/Supply_Hub.png" alt="" loading="lazy"></div>
+            <h3>備品Hub</h3>
+          </div>
+          <p>備品の購入依頼をまとめ、進み具合を確認できます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Supply_Hub/Supply_Hub_1.0.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Supply_Hub/Supply_Hub-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Supply_Hub/Supply_Hub.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 設備不具合・修理受付 -->
+        <article class="app" id="a-repair-desk">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🔧</span><img src="https://webxdc-mini-app.github.io/repair-desk/repair-desk.png" alt="" loading="lazy"></div>
+            <h3>設備不具合・修理受付</h3>
+          </div>
+          <p>施設や職場の不具合を、グループで記録して管理します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/repair-desk/repair-desk_1.0.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/repair-desk/repair-desk-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/repair-desk/repair-desk-manual.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 社内通知の確認表 -->
+        <article class="app" id="a-Notice_Confirmation_Sheet">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>✅</span><img src="https://webxdc-mini-app.github.io/Notice_Confirmation_Sheet/Notice_Confirmation_Sheet.png" alt="" loading="lazy"></div>
+            <h3>社内通知の確認表</h3>
+          </div>
+          <p>お知らせを共有し、読んだ人を記録します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Notice_Confirmation_Sheet/Notice_Confirmation_Sheet_1.0.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Notice_Confirmation_Sheet/Notice_Confirmation_Sheet-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Notice_Confirmation_Sheet/Notice_Confirmation_Sheet.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== お店・受付 ===== -->
+    <section id="c-s" class="cat"><h2>🏨 お店・受付</h2>
+      <p class="sub">受付や予約、注文をスタッフで共有</p>
+      <div class="grid"><!-- ▼ 来客コールシステム -->
+        <article class="app" id="a-reception-select">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🔔</span><img src="https://webxdc-mini-app.github.io/reception-select/reception-select.png" alt="" loading="lazy"></div>
+            <h3>来客コールシステム</h3>
+          </div>
+          <p>来訪者が担当者を選ぶと、その人のスマホだけに通知が届きます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/reception-select/reception-select-1.0.4.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/reception-select/reception-select-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/reception-select/reception-operation-manual.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ Seatmate 席待ち管理 -->
+        <article class="app" id="a-seatmate_authority">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🪑</span><img src="https://webxdc-mini-app.github.io/seatmate_authority/seatmate_authority.png" alt="" loading="lazy"></div>
+            <h3>Seatmate 席待ち管理</h3>
+          </div>
+          <p>入口で受付をして、席の案内とスタッフへの連絡ができます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/seatmate_authority/seatmate_authority_1.1.1.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/seatmate_authority/seatmate-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/seatmate_authority/seatmate-manual.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 門 スタッフ共有予約台帳 -->
+        <article class="app" id="a-Mon_Reservation_Staff">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>📒</span><img src="https://webxdc-mini-app.github.io/Mon_Reservation_Staff/Mon_Reservation.png" alt="" loading="lazy"></div>
+            <h3>門 スタッフ共有予約台帳</h3>
+          </div>
+          <p>電話や店頭で受けた予約を、スタッフ全員で共有します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Mon_Reservation_Staff/Mon_Reservation_Staff_1.3.2.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Mon_Reservation_Staff/Mon_Reservation_Staff-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Mon_Reservation_Staff/Mon_Reservation_Staff.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ まちめし 注文台帳 -->
+        <article class="app" id="a-machimeshi">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🍙</span><img src="https://webxdc-mini-app.github.io/machimeshi/machimeshi.png" alt="" loading="lazy"></div>
+            <h3>まちめし 注文台帳</h3>
+          </div>
+          <p>イベント・子ども食堂・炊き出しの注文を管理します。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/machimeshi/machimeshi-1.5.4.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/machimeshi/machimeshi-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/machimeshi/machimeshi.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 学校・学び ===== -->
+    <section id="c-l" class="cat"><h2>📚 学校・学び</h2>
+      <p class="sub">教える人と学ぶ人をつなぐ</p>
+      <div class="grid"><!-- ▼ 青空教室 -->
+        <article class="app" id="a-Aozora-Classroom">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🏫</span><img src="https://webxdc-mini-app.github.io/Aozora-Classroom/Aozora-Classroom.png" alt="" loading="lazy"></div>
+            <h3>青空教室</h3>
+          </div>
+          <p>先生が教材を配り、生徒は「わかった」「質問」で答えます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Aozora-Classroom/Aozora-Classroom-1.0.4.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Aozora-Classroom/Aozora-Classroom-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Aozora-Classroom/Aozora-Classroom.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ルービックキューブ先生 -->
+        <article class="app" id="a-Rubik-Teacher">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🧊</span><img src="https://webxdc-mini-app.github.io/Rubik-Teacher/Rubik_s_Cube_Teacher.png" alt="" loading="lazy"></div>
+            <h3>ルービックキューブ先生</h3>
+          </div>
+          <p>カメラで読み取り、7ステップで解き方を教えます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Rubik-Teacher/Rubik_s_Cube_Teacher-1.0.1.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Rubik-Teacher/Rubik-Teacher-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Rubik-Teacher/Rubik-Teacher-Manual.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 遊ぶ ===== -->
+    <section id="c-g" class="cat"><h2>🎮 遊ぶ</h2>
+      <p class="sub">離れていても、チャットで対戦・協力</p>
+      <div class="grid"><!-- ▼ リバーシ -->
+        <article class="app" id="a-reversi">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>⚫</span><img src="https://webxdc-mini-app.github.io/reversi/reversi.png" alt="" loading="lazy"></div>
+            <h3>リバーシ</h3>
+          </div>
+          <p>オンライン対戦できるリバーシ（オセロ）です。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/reversi/reversi-1.1.3.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/reversi/reversi-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/reversi/reversi_manual.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 五目並べ -->
+        <article class="app" id="a-gomoku">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>⭕</span><img src="https://webxdc-mini-app.github.io/gomoku/gomoku.png" alt="" loading="lazy"></div>
+            <h3>五目並べ</h3>
+          </div>
+          <p>オンライン対戦できる五目並べです。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/gomoku/gomoku-1.0.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/gomoku/gomoku-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/gomoku/gomoku.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 将棋 -->
+        <article class="app" id="a-shogi">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>♟</span><img src="https://webxdc-mini-app.github.io/shogi/shogi.png" alt="" loading="lazy"></div>
+            <h3>将棋</h3>
+          </div>
+          <p>オンライン対戦できる将棋です。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/shogi/shogi-1.0.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/shogi/shogi-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/shogi/shogi.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 囲碁 -->
+        <article class="app" id="a-igo">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>⚪</span><img src="https://webxdc-mini-app.github.io/igo/igo.png" alt="" loading="lazy"></div>
+            <h3>囲碁</h3>
+          </div>
+          <p>19路盤と15路盤で対戦できます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/igo/igo-1.1.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/igo/igo-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/igo/igo.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ モダンチェス -->
+        <article class="app" id="a-Modern-Chess">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>♞</span><img src="https://webxdc-mini-app.github.io/Modern-Chess/Modern-Chess.png" alt="" loading="lazy"></div>
+            <h3>モダンチェス</h3>
+          </div>
+          <p>すっきりしたデザインの対戦チェスです。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Modern-Chess/Modern-Chess-1.0.4.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Modern-Chess/Modern-Chess-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Modern-Chess/Modern-Chess.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっと雀 -->
+        <article class="app" id="a-ChatJan">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🀄</span><img src="https://webxdc-mini-app.github.io/ChatJan/ChatJan.png" alt="" loading="lazy"></div>
+            <h3>ちゃっと雀</h3>
+          </div>
+          <p>チャットから始められる対戦麻雀です。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/ChatJan/ChatJan-1.0.5.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/ChatJan/ChatJan-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/ChatJan/ChatJan.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっとポーカー -->
+        <article class="app" id="a-chatto-poker">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🃏</span><img src="https://webxdc-mini-app.github.io/chatto-poker/chatto-poker.png" alt="" loading="lazy"></div>
+            <h3>ちゃっとポーカー</h3>
+          </div>
+          <p>チャットから始められる対戦ポーカーです。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chatto-poker/chatto-poker-1.1.3.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chatto-poker/chatto-poker-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chatto-poker/chatto-poker.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ BINGO CLUB -->
+        <article class="app" id="a-bingo_club">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🎱</span><img src="https://webxdc-mini-app.github.io/bingo_club/bingo_club.png" alt="" loading="lazy"></div>
+            <h3>BINGO CLUB</h3>
+          </div>
+          <p>司会者が抽選すると、全員のカードに自動で印が付きます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/bingo_club/bingo_club_1.1.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/bingo_club/bingo_club-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/bingo_club/bingo_club.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 上毛かるた -->
+        <article class="app" id="a-jomo-karuta">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🎴</span><img src="https://webxdc-mini-app.github.io/jomo-karuta/jomo-karuta.png" alt="" loading="lazy"></div>
+            <h3>上毛かるた</h3>
+          </div>
+          <p>読み上げ付きのご当地かるた。通信対戦もできます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/jomo-karuta/jomo-karuta-1.0.4.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/jomo-karuta/jomo-karuta-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/jomo-karuta/jomo-karuta.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっとジグソー -->
+        <article class="app" id="a-chatto-jigsaw">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🧩</span><img src="https://webxdc-mini-app.github.io/chatto-jigsaw/chatto-jigsaw.png" alt="" loading="lazy"></div>
+            <h3>ちゃっとジグソー</h3>
+          </div>
+          <p>写真からパズルを作り、みんなで完成させます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chatto-jigsaw/chatto-jigsaw-1.2.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chatto-jigsaw/chatto-jigsaw-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chatto-jigsaw/chatto-jigsaw.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっとナンプレ -->
+        <article class="app" id="a-chat-nanpure">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🔢</span><img src="https://webxdc-mini-app.github.io/chat-nanpure/chat-nanpure.png" alt="" loading="lazy"></div>
+            <h3>ちゃっとナンプレ</h3>
+          </div>
+          <p>相談しながら、みんなで解く数独です。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chat-nanpure/chat-nanpure-1.3.2.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chat-nanpure/chat-nanpure-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chat-nanpure/chat-nanpure.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ オークションハウス -->
+        <article class="app" id="a-Auction-House">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🔨</span><img src="https://webxdc-mini-app.github.io/Auction-House/Auction-House.png" alt="" loading="lazy"></div>
+            <h3>オークションハウス</h3>
+          </div>
+          <p>とっておきの品を、みんなで競り合います。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Auction-House/Auction-House-v1.1.0.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Auction-House/Auction-House-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Auction-House/Auction-House.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 非常ベル・早押しボタン -->
+        <article class="app" id="a-Emergency_Call">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🚨</span><img src="https://webxdc-mini-app.github.io/Emergency_Call/Emergency_Call.png" alt="" loading="lazy"></div>
+            <h3>非常ベル・早押しボタン</h3>
+          </div>
+          <p>グループ全員に鳴らせる非常ベルと早押しボタンです。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Emergency_Call/Emergency_Call-1.0.1.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Emergency_Call/Emergency_Call-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Emergency_Call/Emergency_Call.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 暮らし・ペット ===== -->
+    <section id="c-h" class="cat"><h2>🐾 暮らし・ペット</h2>
+      <p class="sub">家計簿や、みんなで育てるペット</p>
+      <div class="grid"><!-- ▼ ねこの家計簿 -->
+        <article class="app" id="a-Cat_s_Household_Budget">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🐱</span><img src="https://webxdc-mini-app.github.io/Cat_s_Household_Budget/Cat_s_Household_Budget.png" alt="" loading="lazy"></div>
+            <h3>ねこの家計簿</h3>
+          </div>
+          <p>収入と支出を記録し、月ごと・年ごとのグラフで見られます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/Cat_s_Household_Budget/Cat_s_Household_Budget.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/Cat_s_Household_Budget/Cat_s_Household_Budget-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/Cat_s_Household_Budget/Cat_s_Household_Budget.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ 猫の集会 -->
+        <article class="app" id="a-nekoshu">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🐈</span><img src="https://webxdc-mini-app.github.io/nekoshu/nekoshu.png" alt="" loading="lazy"></div>
+            <h3>猫の集会</h3>
+          </div>
+          <p>グループでみんなの猫を育てます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/nekoshu/nekoshu-1.1.1.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/nekoshu/nekoshu-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/nekoshu/nekoshu.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ドッグラン -->
+        <article class="app" id="a-dogrun">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🐕</span><img src="https://webxdc-mini-app.github.io/dogrun/dogrun.png" alt="" loading="lazy"></div>
+            <h3>ドッグラン</h3>
+          </div>
+          <p>グループでみんなの犬を育てます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/dogrun/dogrun-1.1.1.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/dogrun/dogrun-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/dogrun/dogrun.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ アクアリュウム -->
+        <article class="app" id="a-aquaryuum">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🐠</span><img src="https://webxdc-mini-app.github.io/aquaryuum/aquaryuum.png" alt="" loading="lazy"></div>
+            <h3>アクアリュウム</h3>
+          </div>
+          <p>みんなの水槽で金魚を育てます。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/aquaryuum/aquaryuum-1.0.2.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/aquaryuum/aquaryuum-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/aquaryuum/aquaryuum.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+        <!-- ▼ ちゃっとスタンプメーカー -->
+        <article class="app" id="chat-stamp-maker">
+          <div class="top">
+            <div class="ic" aria-hidden="true"><span>🐱</span><img src="https://webxdc-mini-app.github.io/chat-stamp-maker/chat-stamp-maker.png" alt="" loading="lazy"></div>
+            <h3>ちゃっとスタンプメーカー</h3>
+          </div>
+          <p>写真やイラストから、好きな言葉で動くスタンプを作り、Delta Chatの仲間と共有。</p>
+          <div class="row">
+            <a class="btn" href="https://webxdc-mini-app.github.io/chat-stamp-maker/chat-stamp-maker-1.0.8.xdc">ダウンロード</a>
+            <a class="btn s" href="https://webxdc-mini-app.github.io/chat-stamp-maker/chat-stamp-maker-demo.html" target="_blank" rel="noopener">ためしてみる</a>
+            <a class="lnk" href="https://webxdc-mini-app.github.io/chat-stamp-maker/chat-stamp-maker.html" target="_blank" rel="noopener">使い方</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <section id="faq"><h2>よくある質問</h2>
+    <details><summary>Delta Chat はどこで手に入りますか？</summary>
+      <p>Delta Chat の公式サイト（<a href="https://delta.chat" target="_blank" rel="noopener">delta.chat</a>）から、お使いの機器に合ったアプリを入手できます。先に入れてから、このサイトのミニアプリをお使いください。</p>
+    </details>
+    <details><summary>ミニアプリってなに？</summary>
+      <p>チャットの中で動く小さなアプリです。技術名は Webxdc、ファイルの拡張子は .xdc です。</p>
+    </details>
+    <details><summary>Delta Chat ってなに？</summary>
+      <p>メールの仕組みを使ったチャットアプリです。ミニアプリは、このアプリの中で使います。</p>
+    </details>
+    <details><summary>「ためしてみる」ってなに？</summary>
+      <p>ダウンロードしなくても、ブラウザでそのまま体験できる体験版です。使い心地を確かめてから選べます。</p>
+    </details>
+    <details><summary>ダウンロードしたあとは、どうするの？</summary>
+      <p>Delta Chat を開き、使いたいグループにダウンロードしたファイルを送ります。届いたアプリをタップすると、みんなで使い始められます。</p>
+    </details>
+    <details><summary>使い方がわからないときは？</summary>
+      <p>各アプリの「くわしく見る」を開くと、使い方（マニュアル）へのリンクがあります。</p>
+    </details>
+  </section>
+</main>
+
+<div class="wrap"><section class="about" style="margin-bottom:2.4rem"><h2>導入をご検討の自治体・団体・学校の方へ</h2>
+    <p>避難所の運営、地域の行事、事業所での記録や連絡など、現場で使えるアプリを探している方は、まず「ためしてみる」で体験してみてください。使い方は、各アプリの「くわしく見る」から使い方（マニュアル）をご覧いただけます。</p>
+  </section>
+</div>
+<div class="wrap"><section class="about legal" id="legal" style="margin-bottom:2.4rem"><h2>管理人情報・ご利用にあたって</h2>
+    <p><b>運営</b>：箱舟プロジェクト（Ark Project）<br>
+    <b>管理人</b>：<span class="ph">川上 勝行</span><br>
+    <b>お問い合わせ</b>：<span class="ph">https://x.com/tz8g</span><br>
+    <b>webxdc関連ソース(github)</b>：<span class="ph">https://github.com/orgs/Webxdc-mini-app/</span><br>
+    <b>TinyBox関連ソース(github)</b>：<span class="ph">https://github.com/Kawakami4649/</span><br>
+    <b>最終更新日</b>：<span class="ph">2026-11-03</span></p>
+    <ul>
+      <li>各アプリは現状のまま提供しています。動作や内容の正確さを保証するものではありません。</li>
+      <li>災害時や安全に関わる判断は、自治体などの公的機関が出す最新の情報を必ず確認してください。</li>
+      <li>ダウンロードは、このサイトに掲載しているファイルをご利用ください。配布元のわからないファイルは開かないでください。</li>
+      <li>名前や居場所などの個人情報を扱うときは、グループの参加者と共有の範囲をよく確認してください。</li>
+      <li>ご利用によって生じた損害について、管理人は責任を負いかねます。</li>
+    </ul>
+  </section>
+</div>
+<footer><div class="wrap">箱舟プロジェクト / Ark Project　<a href="https://webxdc-mini-app.github.io/apps/Benefits.html" target="_blank" rel="noopener">ミニアプリのメリット</a>　<a href="#legal">管理人情報・ご利用にあたって</a></div>
+</footer>
+
+<script>
+(function(){
+try{
+var r=document.documentElement,fs=document.querySelector(".fs"),bs=document.querySelectorAll("[data-fs]"),q=document.getElementById("q");
+function set(v){r.setAttribute("data-fs",v);bs.forEach(function(b){b.setAttribute("aria-pressed",String(b.dataset.fs===v))});try{localStorage.setItem("fs",v)}catch(e){}}
+bs.forEach(function(b){b.onclick=function(){set(b.dataset.fs)}});
+var v="m";try{v=localStorage.getItem("fs")||"m"}catch(e){}
+set(v);fs.hidden=false;q.hidden=false;
+q.addEventListener("input",function(){
+var t=q.value.trim().toLowerCase(),home=!t;
+document.querySelectorAll("#list .app").forEach(function(a){a.hidden=!!t&&a.textContent.toLowerCase().indexOf(t)<0});
+document.querySelectorAll("#list .cat").forEach(function(c){c.hidden=!!t&&!c.querySelector(".app:not([hidden])")});
+document.getElementById("pick").hidden=!home;document.getElementById("kit").hidden=!home;
+});
+}catch(e){}
+})();
+</script>
+</body>
+</html>
